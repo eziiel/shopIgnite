@@ -33,14 +33,16 @@ export default function Product({ product }: ProductsProps) {
     try {
       setIsCreatingCheckoutSession(true)
       const response = await axios.post('/api/checkout', {
+        
         priceId: product.defaultPriceId
       })
 
       const { checkoutURL } = response.data
 
+      console.log(checkoutURL)
       
       //redirect to internal URL
-        // router.push('checkout')
+        // router.push(checkoutURL)
       //redirect to external URL
       window.location.href = checkoutURL
     } catch (error) {
@@ -85,6 +87,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps<any, { id: string }> = async ({ params }) => {
   const productId = params!.id
+
   const product = await stripe.products.retrieve(productId, {
     expand: ['default_price'],
   })
