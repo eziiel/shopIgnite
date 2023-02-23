@@ -2,6 +2,7 @@ import { stripe } from "../../lib/stripe";
 import { NextApiRequest, NextApiResponse } from "next";
 import { METHODS } from "http";
 
+const key= 'sk_test_51McurwAAdVH5EhKbj6SO2biL4TaOqTNsPj2XOwz9I560vnOuAYVgYbDsTa834vdCRoav19rzBwRWJQ4JnzHjonD400idYId0pY'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { priceId } = req.body

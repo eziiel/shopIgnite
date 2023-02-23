@@ -2,6 +2,7 @@ import { stripe } from '@/src/lib/stripe'
 import { ProductContainer, ProductImage, ProductInfo } from '@/src/styles/pages/product'
 import axios from 'axios'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -50,6 +51,10 @@ export default function Product({ product }: ProductsProps) {
   }
   
   return (
+    <>
+    <Head>
+        <title>{product.name}</title>
+      </Head>
     <ProductContainer>
       <ProductImage>
         <Image src={product.imgUrl} width={520} height={480} alt='' />
@@ -66,15 +71,14 @@ export default function Product({ product }: ProductsProps) {
         comprar agora</button>
       </ProductInfo>
     </ProductContainer>
+    </>
   )
 }
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [
-      { params : { id: 'prod_NNgO3G8jFveDgQ'}},
-    ],
+    paths: [],
 
     fallback: true,
   }
